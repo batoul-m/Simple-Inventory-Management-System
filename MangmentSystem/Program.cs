@@ -22,43 +22,37 @@ namespace MangmentSystem
                         AddProducts();
                         break;
 
+
                     case 2:
-                        if (products.Count > 0) {
-                             foreach (Product item in products) { 
-                                Console.WriteLine(item.toString()); 
-                             }
-                          } else { 
+                        if (products.Count > 0)
+                        {
+                            foreach (Product item in products)
+                            {
+                                Console.WriteLine(item.toString());
+                            }
+                        }else{
                             Console.WriteLine("there's no products in the System");
-                             }
+                        }
 
                         break;
 
+
                     case 3:
-                        if (products.Count > 0)
-                        {
-                            Console.WriteLine("write a product name to edit");
-                            string name = Console.ReadLine();
-                            foreach(Product item in products)
-                            {
-                                if (name.Equals(item.getName())){
-                                    Console.WriteLine(item.toString());
-                                    AddProducts();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("there is no product with this name");
-                                }
-
-                            }
-                            }
-
-                        else
-                        {
+                        if (products.Count > 0){
+                            editProuducts();
+                        }else{
                             Console.WriteLine("there's no products in the System");
                         }
                         break;
 
+
                     case 4:
+                        if (products.Count > 0)
+                        {
+                            deleteProducts();
+                        }else{
+                            Console.WriteLine("there's no products in the System");
+                        }
                         break;
 
                     case 5:
@@ -87,6 +81,43 @@ namespace MangmentSystem
             products.Add(new Product(name, price, quantity));
         }
 
+        public static void editProuducts()
+        {
+            Console.WriteLine("write a product name to edit");
+            string name = Console.ReadLine();
+            bool theresProduct = false;
+            foreach (Product item in products)
+            {
+                if (name.Equals(item.getName())){
+                    theresProduct = true;
+                    Console.WriteLine(item.toString());
+
+                }
+            }
+            if (theresProduct){
+                AddProducts();
+            }else{
+                Console.WriteLine("there is no product with this name");
+            }
+        }
+
+        public static void deleteProducts()
+        {
+            Console.WriteLine("write the product name");
+            string name = Console.ReadLine();
+            bool theresProduct = false;
+            foreach (Product item in products)
+            {
+                if (name.Equals(item.getName())){
+                    theresProduct = true;
+                    products.Remove(item);
+                }
+            }
+            if (!theresProduct){
+                Console.WriteLine("there is no product with this name");
+            }
+
+        }
 
 
     }
