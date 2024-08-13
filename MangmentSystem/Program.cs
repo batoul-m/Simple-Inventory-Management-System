@@ -56,6 +56,27 @@ namespace MangmentSystem
                         break;
 
                     case 5:
+                        if (products.Count > 0){
+                            Console.WriteLine("write a name for the paoduct");
+                            string name = Console.ReadLine();
+                            bool theresProduct = false;
+                            foreach (Product item in products)
+                            {
+                                if (name.Equals(item.getName()))
+                                {
+                                    theresProduct = true;
+                                    Console.WriteLine(item.toString());
+
+                                }
+                            }
+                            if (!theresProduct){
+                                Console.WriteLine("there is no product with this name")
+                            }
+
+                        }
+                        else{
+                            Console.WriteLine("there's no products in the System");
+                        }
                         break;
 
                     case 6:
