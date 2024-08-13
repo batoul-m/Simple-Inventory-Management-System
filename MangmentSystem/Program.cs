@@ -49,8 +49,12 @@ namespace MangmentSystem
                     case 4:
                         if (products.Count > 0)
                         {
-                            deleteProducts();
-                        }else{
+                            if (!deleteProducts())
+                            {
+                                Console.WriteLine("there is no product with this name");
+                            }
+                        }
+                        else{
                             Console.WriteLine("there's no products in the System");
                         }
                         break;
@@ -70,7 +74,7 @@ namespace MangmentSystem
                                 }
                             }
                             if (!theresProduct){
-                                Console.WriteLine("there is no product with this name")
+                                Console.WriteLine("there is no product with this name");
                             }
 
                         }
@@ -80,6 +84,8 @@ namespace MangmentSystem
                         break;
 
                     case 6:
+                        //Console.WriteLine("Exiting the program...");
+                        Environment.Exit(0);
                         break;
 
                     default:
@@ -122,21 +128,18 @@ namespace MangmentSystem
             }
         }
 
-        public static void deleteProducts()
+        public static bool deleteProducts()
         {
             Console.WriteLine("write the product name");
             string name = Console.ReadLine();
-            bool theresProduct = false;
             foreach (Product item in products)
             {
                 if (name.Equals(item.getName())){
-                    theresProduct = true;
                     products.Remove(item);
+                    return true;
                 }
             }
-            if (!theresProduct){
-                Console.WriteLine("there is no product with this name");
-            }
+            return false;
 
         }
 
