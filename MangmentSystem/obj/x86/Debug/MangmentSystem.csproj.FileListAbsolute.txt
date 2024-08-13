@@ -1,0 +1,6 @@
+/home/user/Projects/MangmentSystem/MangmentSystem/bin/Debug/MangmentSystem.exe
+/home/user/Projects/MangmentSystem/MangmentSystem/bin/Debug/MangmentSystem.pdb
+/home/user/Projects/MangmentSystem/MangmentSystem/obj/x86/Debug/MangmentSystem.csproj.AssemblyReference.cache
+/home/user/Projects/MangmentSystem/MangmentSystem/obj/x86/Debug/MangmentSystem.csproj.CoreCompileInputs.cache
+/home/user/Projects/MangmentSystem/MangmentSystem/obj/x86/Debug/MangmentSystem.exe
+/home/user/Projects/MangmentSystem/MangmentSystem/obj/x86/Debug/MangmentSystem.pdb
