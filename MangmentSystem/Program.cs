@@ -23,17 +23,14 @@ namespace MangmentSystem
                         break;
 
                     case 2:
-                        if (products.Count > 0)
-                        {
-                            foreach (Product item in products)
-                            {
-                                Console.WriteLine(item.toString());
-                            }
-                        }
-                        else
-                        {
+                        if (products.Count > 0) {
+                             foreach (Product item in products) { 
+                                Console.WriteLine(item.toString()); 
+                             }
+                          } else { 
                             Console.WriteLine("there's no products in the System");
-                        }
+                             }
+
                         break;
 
                     case 3:
