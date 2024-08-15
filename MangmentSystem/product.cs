@@ -11,7 +11,14 @@ namespace ManagementSystem
         public string Name
         {
             get => _name;
-            set => _name = value;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Product name cannot be null or empty.");
+                }
+                _name = value;
+            }
         }
 
         public double Price
