@@ -1,23 +1,41 @@
 ﻿using System;
-namespace MangmentSystem
+
+namespace ManagementSystem
 {
     public class Product
-    {   public string name { get; set; }
-        public double price { get; set; }
-        public double quantity { get; set; }
+    {
+        private string _name;
+        private double _price;
+        private double _quantity;
 
-        public Product(string name,double price,double quantity)
+        public string Name
         {
-            this.name = name;
-            this.price = price > 0 ? price : 0;
-            this.quantity = quantity > 0 ? quantity : 0;
+            get => _name;
+            set => _name = value;
         }
 
-        public string ToString()
+        public double Price
         {
-            return $"name = {name}  price = {price}  quantity = {quantity}";
+            get => _price;
+            set => _price = value > 0 ? value : 0;
         }
 
+        public double Quantity
+        {
+            get => _quantity;
+            set => _quantity = value > 0 ? value : 0;
+        }
 
+        public Product(string name, double price, double quantity)
+        {
+            Name = name;
+            Price = price;
+            Quantity = quantity;
+        }
+
+        public override string ToString()
+        {
+            return $"Name = {Name}, Price = {Price}, Quantity = {Quantity}";
+        }
     }
 }

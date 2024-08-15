@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{60D59D3D-8B14-41B8-8F05-27A3361D0A86}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="MangmentSystem/product.cs">
     <Files>
-      <File FileName="MangmentSystem/product.cs" Line="5" Column="12" />
+      <File FileName="MangmentSystem/product.cs" Line="16" Column="24" />
       <File FileName="MangmentSystem/Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
