@@ -28,7 +28,7 @@ namespace MangmentSystem
                         {
                             foreach (Product item in products)
                             {
-                                Console.WriteLine(item.toString());
+                                Console.WriteLine(item.ToString());
                             }
                         }else{
                             Console.WriteLine("there's no products in the System");
@@ -39,7 +39,7 @@ namespace MangmentSystem
 
                     case 3:
                         if (products.Count > 0){
-                            editProuducts();
+                            EditProuducts();
                         }else{
                             Console.WriteLine("there's no products in the System");
                         }
@@ -49,7 +49,7 @@ namespace MangmentSystem
                     case 4:
                         if (products.Count > 0)
                         {
-                            if (!deleteProducts())
+                            if (!DeleteProducts())
                             {
                                 Console.WriteLine("there is no product with this name");
                             }
@@ -66,10 +66,10 @@ namespace MangmentSystem
                             bool theresProduct = false;
                             foreach (Product item in products)
                             {
-                                if (name.Equals(item.getName()))
+                                if (name.Equals(item.name))
                                 {
                                     theresProduct = true;
-                                    Console.WriteLine(item.toString());
+                                    Console.WriteLine(item.ToString());
 
                                 }
                             }
@@ -108,16 +108,16 @@ namespace MangmentSystem
             products.Add(new Product(name, price, quantity));
         }
 
-        public static void editProuducts()
+        public static void EditProuducts()
         {
             Console.WriteLine("write a product name to edit");
             string name = Console.ReadLine();
             bool theresProduct = false;
             foreach (Product item in products)
             {
-                if (name.Equals(item.getName())){
+                if (name.Equals(item.name)){
                     theresProduct = true;
-                    Console.WriteLine(item.toString());
+                    Console.WriteLine(item.ToString());
 
                 }
             }
@@ -128,13 +128,13 @@ namespace MangmentSystem
             }
         }
 
-        public static bool deleteProducts()
+        public static bool DeleteProducts()
         {
             Console.WriteLine("write the product name");
             string name = Console.ReadLine();
             foreach (Product item in products)
             {
-                if (name.Equals(item.getName())){
+                if (name.Equals(item.name)){
                     products.Remove(item);
                     return true;
                 }
