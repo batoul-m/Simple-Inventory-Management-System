@@ -1,52 +1,48 @@
 ﻿using System;
-namespace MangmentSystem
+
+namespace ManagementSystem
 {
     public class Product
-    {   private string name { get; set; }
-        private double price { get; set; }
-        private double quantity { get; set; }
+    {
+        private string _name;
+        private double _price;
+        private double _quantity;
 
-        public Product(string name,double price,double quantity)
+        public string Name
         {
-            setName(name);
-            setPrice(price);
-            setQuantity(quantity);
-        }
-        public string getName()
-        {
-            return name;
-        }
-
-        public double getPrice()
-        {
-            return price;
+            get => _name;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Product name cannot be null or empty.");
+                }
+                _name = value;
+            }
         }
 
-        public double getQuantity()
+        public double Price
         {
-            return quantity;
+            get => _price;
+            set => _price = value > 0 ? value : 0;
         }
 
-        public void setName(string name)
+        public double Quantity
         {
-            this.name = name;
+            get => _quantity;
+            set => _quantity = value > 0 ? value : 0;
         }
 
-        public void setPrice(double price)
+        public Product(string name, double price, double quantity)
         {
-            this.price = price >= 0 ? price : 0;
+            Name = name;
+            Price = price;
+            Quantity = quantity;
         }
 
-        public void setQuantity(double quantity)
+        public override string ToString()
         {
-            this.quantity = quantity >= 0 ? quantity : 0;
+            return $"Name = {Name}, Price = {Price}, Quantity = {Quantity}";
         }
-
-        public string toString()
-        {
-            return $"name = {name}  price = {price}  quantity = {quantity}";
-        }
-
-
     }
 }

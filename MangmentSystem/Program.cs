@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections;
 
-namespace MangmentSystem
+namespace ManagementSystem
 {
     class MainClass
     {
         public static ArrayList products = new ArrayList();
+
         public static void Main(string[] args)
         {
             while (true)
             {
-                Console.WriteLine("choose what you want :\n" +
-                                    "1.Add a product\n" + "2.View all products\n" + "3.Edit a product\n" +
-                                    "4.Delete a product\n" + "5.Search for a product\n" + "6.Exit\n"
-                                    );
+                Console.WriteLine("Choose what you want:\n" +
+                                    "1. Add a product\n" +
+                                    "2. View all products\n" +
+                                    "3. Edit a product\n" +
+                                    "4. Delete a product\n" +
+                                    "5. Search for a product\n" +
+                                    "6. Exit\n"
+                                );
+
                 int choice = int.Parse(Console.ReadLine());
 
                 switch (choice)
@@ -22,127 +28,145 @@ namespace MangmentSystem
                         AddProducts();
                         break;
 
-
                     case 2:
                         if (products.Count > 0)
                         {
                             foreach (Product item in products)
                             {
-                                Console.WriteLine(item.toString());
+                                Console.WriteLine(item.ToString());
                             }
-                        }else{
-                            Console.WriteLine("there's no products in the System");
                         }
-
+                        else
+                        {
+                            Console.WriteLine("There's no products in the system.");
+                        }
                         break;
-
 
                     case 3:
-                        if (products.Count > 0){
-                            editProuducts();
-                        }else{
-                            Console.WriteLine("there's no products in the System");
+                        if (products.Count > 0)
+                        {
+                            EditProducts();
+                        }
+                        else
+                        {
+                            Console.WriteLine("There's no products in the system.");
                         }
                         break;
-
 
                     case 4:
                         if (products.Count > 0)
                         {
-                            if (!deleteProducts())
+                            if (!DeleteProducts())
                             {
-                                Console.WriteLine("there is no product with this name");
+                                Console.WriteLine("There is no product with this name.");
                             }
                         }
-                        else{
-                            Console.WriteLine("there's no products in the System");
+                        else
+                        {
+                            Console.WriteLine("There's no products in the system.");
                         }
                         break;
 
                     case 5:
-                        if (products.Count > 0){
-                            Console.WriteLine("write a name for the paoduct");
+                        if (products.Count > 0)
+                        {
+                            Console.WriteLine("Enter the name of the product:");
                             string name = Console.ReadLine();
-                            bool theresProduct = false;
+                            bool foundProduct = false;
+
                             foreach (Product item in products)
                             {
-                                if (name.Equals(item.getName()))
+                                if (name.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
                                 {
-                                    theresProduct = true;
-                                    Console.WriteLine(item.toString());
-
+                                    foundProduct = true;
+                                    Console.WriteLine(item.ToString());
                                 }
                             }
-                            if (!theresProduct){
-                                Console.WriteLine("there is no product with this name");
-                            }
 
+                            if (!foundProduct)
+                            {
+                                Console.WriteLine("There is no product with this name.");
+                            }
                         }
-                        else{
-                            Console.WriteLine("there's no products in the System");
+                        else
+                        {
+                            Console.WriteLine("There's no products in the system.");
                         }
                         break;
 
                     case 6:
-                        //Console.WriteLine("Exiting the program...");
                         Environment.Exit(0);
                         break;
 
                     default:
                         Console.WriteLine("Invalid choice, please choose a number between 1 and 6.");
                         break;
-
                 }
             }
-
         }
 
         public static void AddProducts()
         {
-            Console.WriteLine("enter the name of the product");
+            Console.WriteLine("Enter the name of the product:");
             string name = Console.ReadLine();
-            Console.WriteLine("write the price ");
-            int price = int.Parse(Console.ReadLine());
-            Console.WriteLine("write the quantity");
-            int quantity = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the price:");
+            double price = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the quantity:");
+            double quantity = double.Parse(Console.ReadLine());
+
             products.Add(new Product(name, price, quantity));
         }
 
-        public static void editProuducts()
+        public static void EditProducts()
         {
-            Console.WriteLine("write a product name to edit");
+            Console.WriteLine("Enter the name of the product to edit:");
             string name = Console.ReadLine();
-            bool theresProduct = false;
+            bool foundProduct = false;
+
             foreach (Product item in products)
             {
-                if (name.Equals(item.getName())){
-                    theresProduct = true;
-                    Console.WriteLine(item.toString());
+                if (name.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    foundProduct = true;
 
+                    Console.WriteLine("Enter the new name:");
+                    item.Name = Console.ReadLine();
+
+                    Console.WriteLine("Enter the new price:");
+                    item.Price = double.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Enter the new quantity:");
+                    item.Quantity = double.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Product updated successfully.");
+                    break;
                 }
             }
-            if (theresProduct){
-                AddProducts();
-            }else{
-                Console.WriteLine("there is no product with this name");
+
+            if (!foundProduct)
+            {
+                Console.WriteLine("There is no product with this name.");
             }
         }
 
-        public static bool deleteProducts()
+        public static bool DeleteProducts()
         {
-            Console.WriteLine("write the product name");
+            Console.WriteLine("Enter the name of the product to delete:");
             string name = Console.ReadLine();
+
             foreach (Product item in products)
             {
-                if (name.Equals(item.getName())){
+                if (name.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
+                {
                     products.Remove(item);
+                    Console.WriteLine("Product deleted successfully.");
                     return true;
                 }
             }
+
             return false;
-
         }
-
-
     }
 }
