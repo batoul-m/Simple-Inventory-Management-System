@@ -5,15 +5,17 @@ class MainClass
 {
     private static IProductService _productService;
 
-    public MainClass(IProductService productService)
+    public MainClass(IProductService productService, string connectionString)
     {
         _productService = productService;
+        _dbContext = new DbContext(connectionString);
     }
 
     public static void Main(string[] args)
     {
-        IProductService productService = new ProductService();
-        MainClass program = new MainClass(productService);
+        string connectionString = "server=localhost;database=InverntorySystem;user id=sa;password=YourPassword123!;";
+        IProductService productService = new ProductService(connectionString);
+        MainClass program = new MainClass(productService, connectionString);
 
         while (true)
         {
