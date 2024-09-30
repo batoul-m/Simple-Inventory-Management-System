@@ -1,52 +1,16 @@
-﻿using System;
-namespace MangmentSystem
-{
-    public class Product
-    {   private string name { get; set; }
-        private double price { get; set; }
-        private double quantity { get; set; }
-
-        public Product(string name,double price,double quantity)
-        {
-            setName(name);
-            setPrice(price);
-            setQuantity(quantity);
-        }
-        public string getName()
-        {
-            return name;
-        }
-
-        public double getPrice()
-        {
-            return price;
-        }
-
-        public double getQuantity()
-        {
-            return quantity;
-        }
-
-        public void setName(string name)
-        {
-            this.name = name;
-        }
-
-        public void setPrice(double price)
-        {
-            this.price = price >= 0 ? price : 0;
-        }
-
-        public void setQuantity(double quantity)
-        {
-            this.quantity = quantity >= 0 ? quantity : 0;
-        }
-
-        public string toString()
-        {
-            return $"name = {name}  price = {price}  quantity = {quantity}";
-        }
-
-
+﻿namespace ManagementSystem;
+public class Product{
+    public string Name;
+    public decimal Price;
+    public float Quantity;
+    public Product(string name, double price, double quantity)
+    {
+        Name = string.IsNullOrWhiteSpace(name) ? throw new ArgumentException("Product name cannot be null or empty."): name;
+        Price = price > 0 ? price : 0 ;
+        Quantity = quantity > 0 ? quantity : 0;
+    }
+    public override string ToString()
+    {
+        return $"Name = {Name}, Price = {Price}, Quantity = {Quantity}";
     }
 }
